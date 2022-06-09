@@ -9,15 +9,15 @@ const followersArray = ['tetondan', "dustinmyers", 'justsml', 'luishrd', "bigkne
 
 followersArray.forEach(function (val) {
   getGitCard(val)
-}
+})
 
 function getGitCard(username) {
-    axios.get(`https://api.github.com/users/${username}`).then(function (value) {// If it does work successfully. 
-      document.querySelector('.cards').appendChild(createCard(value.data));
-    }).catch(function () { //in case it doesnt work successfully.
-      console.error("It didn't work")
-    })
-  }
+  axios.get(`https://api.github.com/users/${username}`).then(function (value) {// If it does work successfully. 
+    document.querySelector('.cards').appendChild(createCard(value.data));
+  }).catch(function () { //in case it doesnt work successfully.
+    console.error("It didn't work")
+  })
+}
 
 
 
@@ -46,49 +46,49 @@ function getGitCard(username) {
 */
 
 function createCard(obj) {
-    // obj = obj.data;
+  // obj = obj.data;
 
-    const newCard = document.createElement("div");
-    newCard.classList.add("card");
-    const newImage = document.createElement("img");
-    newCard.appendChild(newImage);
-    newImage.src = obj["avatar_url"];
-    newImage.alt = "github user";
+  const newCard = document.createElement("div");
+  newCard.classList.add("card");
+  const newImage = document.createElement("img");
+  newCard.appendChild(newImage);
+  newImage.src = obj["avatar_url"];
+  newImage.alt = "github user";
 
-    const cardInfo = document.createElement("div")
-    cardInfo.classList.add("card-info");
-    newCard.appendChild(cardInfo);
-    const Name = document.createElement('h3');
-    Name.textContent = obj.name;
-    Name.classList.add("name");
-    cardInfo.appendChild(Name);
-    const userName = document.createElement("p");
-    userName.classList.add("username");
-    userName.textContent = obj.login;
-    cardInfo.appendChild(userName);
-    const Location = document.createElement("p");
-    Location.textContent = ('Location: ' + obj.location);
-    cardInfo.appendChild(Location);
+  const cardInfo = document.createElement("div")
+  cardInfo.classList.add("card-info");
+  newCard.appendChild(cardInfo);
+  const Name = document.createElement('h3');
+  Name.textContent = obj.name;
+  Name.classList.add("name");
+  cardInfo.appendChild(Name);
+  const userName = document.createElement("p");
+  userName.classList.add("username");
+  userName.textContent = obj.login;
+  cardInfo.appendChild(userName);
+  const Location = document.createElement("p");
+  Location.textContent = ('Location: ' + obj.location);
+  cardInfo.appendChild(Location);
 
-    const Profile = document.createElement("p")
-    Profile.textContent = "Profile:"
-    cardInfo.appendChild(Profile)
-    const address = document.createElement("a");
-    address.href = obj.html_url;
-    Profile.appendChild(address);
+  const Profile = document.createElement("p")
+  Profile.textContent = "Profile:"
+  cardInfo.appendChild(Profile)
+  const address = document.createElement("a");
+  address.href = obj.html_url;
+  Profile.appendChild(address);
 
-    const followers = document.createElement("p")
-    followers.textContent = 'Followers: ' + obj.followers;
-    cardInfo.appendChild(followers);
-    const following = document.createElement("p")
-    following.textContent = 'Following: ' + obj.following;
-    cardInfo.appendChild(following);
-    const bio = document.createElement("p")
-    bio.textContent = 'Bio: ' + obj.bio;
-    cardInfo.appendChild(bio);
+  const followers = document.createElement("p")
+  followers.textContent = 'Followers: ' + obj.followers;
+  cardInfo.appendChild(followers);
+  const following = document.createElement("p")
+  following.textContent = 'Following: ' + obj.following;
+  cardInfo.appendChild(following);
+  const bio = document.createElement("p")
+  bio.textContent = 'Bio: ' + obj.bio;
+  cardInfo.appendChild(bio);
 
-    return newCard;
-  }
+  return newCard;
+}
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
